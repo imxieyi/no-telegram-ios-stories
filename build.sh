@@ -11,6 +11,8 @@ OPTIONAL_PATCH="$SCRIPT_PATH/0002-Change-app-name.patch"
 
 source "$SCRIPT_PATH/env.sh"
 
+export PATH="/opt/homebrew/bin:$PATH"
+
 cd $TG_IOS_ROOT
 git reset --hard
 git clean . -dfX

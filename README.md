@@ -43,4 +43,4 @@ If everything is set up correctly, running `./build.sh` should automatically bui
 
 ### Scheduled build
 
-Use `crontab` to run `build.sh` should be good enough. Just keep in mind that TestFlight builds expire after 90 days. The script will only build when Telegram version number changes.
+Copy `com.imxieyi.tgbuild.plist` to `$HOME/Library/LaunchAgents/`, modify the script path and schedule accordingly, then run `launchctl load $HOME/Library/LaunchAgents/com.imxieyi.tgbuild.plist` to install it as scheduled task. Keep in mind that TestFlight builds expire after 90 days. The script will only build when Telegram version number changes. Logs are available in `/tmp/tg-build.log`.

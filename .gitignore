@@ -31,4 +31,5 @@ build_num
 release_config.json
 DefaultAppIcon.xcassets
 *.mobileprovision
+*.p12
 0002-Change-app-name.patch
