@@ -27,6 +27,7 @@ Temporary Items
 
 env.sh
 version
+xcode_version
 build_num
 release_config.json
 DefaultAppIcon.xcassets

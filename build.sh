@@ -38,6 +38,25 @@ if [[ -f "$OPTIONAL_PATCH" ]]; then
     git apply $OPTIONAL_PATCH
 fi
 
+# Override Xcode version
+XCODE_VERSION="$(xcodebuild -version | head -1 | awk -F ' ' '{print $2}')"
+echo "Xcode version: $XCODE_VERSION"
+jq ".xcode = \"$XCODE_VERSION\"" "$TG_IOS_ROOT/versions.json" > "$TG_IOS_ROOT/temp.json"
+mv "$TG_IOS_ROOT/temp.json" "$TG_IOS_ROOT/versions.json"
+
+# Clear bazel cache if Xcode is updated
+OLD_XCODE_VERSION=""
+if [[ -f "$SCRIPT_PATH/xcode_version" ]]; then
+    OLD_XCODE_VERSION=$(< "$SCRIPT_PATH/xcode_version")
+fi
+if [[ "$OLD_XCODE_VERSION" != "$XCODE_VERSION" ]]; then
+    echo "Xcode version updated: $OLD_XCODE_VERSION -> $XCODE_VERSION"
+    bazel clean --expunge
+fi
+
+# Get rid of -warnings-as-errors
+find "$TG_IOS_ROOT" -type f -name BUILD -exec sed -i -e 's/-warnings-as-errors//g' {} \;
+
 if [[ -d "$SCRIPT_PATH/DefaultAppIcon.xcassets" ]]; then
     echo "Replace app icon"
     rm -fr "$TG_IOS_ROOT/Telegram/Telegram-iOS/DefaultAppIcon.xcassets"
@@ -62,5 +81,6 @@ xcrun altool --upload-app --type ios -f $TG_IOS_ROOT/bazel-bin/Telegram/Telegram
 
 # Save version
 echo $NEW_VERSION > "$SCRIPT_PATH/version"
+echo $XCODE_VERSION > "$SCRIPT_PATH/xcode_version"
 
 echo "Completed"
