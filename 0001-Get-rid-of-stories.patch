@@ -1,19 +1,18 @@
-From 6d7be6dc707f7fdaab8610602d09cfebef242b08 Mon Sep 17 00:00:00 2001
+From 4ed99f311ae8aed8b588be891f5647cb65b2921c Mon Sep 17 00:00:00 2001
 From: Yi Xie <imxieyi@users.noreply.github.com>
 Date: Mon, 26 Feb 2024 14:31:09 +0900
-Subject: [PATCH 1/2] Get rid of stories
+Subject: [PATCH] Get rid of stories
 
 ---
  .../ChatListUI/Sources/ChatListController.swift      | 12 +-----------
  .../ChatListUI/Sources/ChatListControllerNode.swift  |  8 --------
- .../PeerInfoScreen/Sources/PeerInfoScreen.swift      |  4 ----
- 3 files changed, 1 insertion(+), 23 deletions(-)
+ 2 files changed, 1 insertion(+), 19 deletions(-)
 
 diff --git a/submodules/ChatListUI/Sources/ChatListController.swift b/submodules/ChatListUI/Sources/ChatListController.swift
-index 7ac1f2f4a5..56f4e65563 100644
+index 3938229ae4..44be6435b1 100644
 --- a/submodules/ChatListUI/Sources/ChatListController.swift
 +++ b/submodules/ChatListUI/Sources/ChatListController.swift
-@@ -5809,14 +5809,7 @@ public class ChatListControllerImpl: TelegramBaseController, ChatListController
+@@ -5863,14 +5863,7 @@ public class ChatListControllerImpl: TelegramBaseController, ChatListController
      }
      
      var isStoryPostingAvailable: Bool {
@@ -29,7 +28,7 @@ index 7ac1f2f4a5..56f4e65563 100644
      }
  }
  
-@@ -5918,9 +5911,6 @@ private final class ChatListLocationContext {
+@@ -5972,9 +5965,6 @@ private final class ChatListLocationContext {
          if let rightButton = self.rightButton {
              result.append(rightButton)
          }
@@ -40,10 +39,10 @@ index 7ac1f2f4a5..56f4e65563 100644
              result.append(proxyButton)
          }
 diff --git a/submodules/ChatListUI/Sources/ChatListControllerNode.swift b/submodules/ChatListUI/Sources/ChatListControllerNode.swift
-index ea4b09cbcf..c85b120610 100644
+index 254d87e596..f44755afed 100644
 --- a/submodules/ChatListUI/Sources/ChatListControllerNode.swift
 +++ b/submodules/ChatListUI/Sources/ChatListControllerNode.swift
-@@ -2001,13 +2001,5 @@ final class ChatListControllerNode: ASDisplayNode, UIGestureRecognizerDelegate {
+@@ -2010,13 +2010,5 @@ final class ChatListControllerNode: ASDisplayNode, ASGestureRecognizerDelegate {
  }
  
  func shouldDisplayStoriesInChatListHeader(storySubscriptions: EngineStorySubscriptions, isHidden: Bool) -> Bool {
@@ -57,21 +56,6 @@ index ea4b09cbcf..c85b120610 100644
 -    }
      return false
  }
-diff --git a/submodules/TelegramUI/Components/PeerInfo/PeerInfoScreen/Sources/PeerInfoScreen.swift b/submodules/TelegramUI/Components/PeerInfo/PeerInfoScreen/Sources/PeerInfoScreen.swift
-index 15fe1bade6..e2a46a5abf 100644
---- a/submodules/TelegramUI/Components/PeerInfo/PeerInfoScreen/Sources/PeerInfoScreen.swift
-+++ b/submodules/TelegramUI/Components/PeerInfo/PeerInfoScreen/Sources/PeerInfoScreen.swift
-@@ -865,10 +865,6 @@ private func settingsItems(data: PeerInfoScreenData?, context: AccountContext, p
-         }
-     }
-     
--    items[.apps]!.append(PeerInfoScreenDisclosureItem(id: 0, text: presentationData.strings.Settings_MyStories, icon: PresentationResourcesSettings.stories, action: {
--        interaction.openSettings(.stories)
--    }))
--    
-     items[.shortcuts]!.append(PeerInfoScreenDisclosureItem(id: 1, text: presentationData.strings.Settings_SavedMessages, icon: PresentationResourcesSettings.savedMessages, action: {
-         interaction.openSettings(.savedMessages)
-     }))
 -- 
-2.39.3 (Apple Git-145)
+2.39.3 (Apple Git-146)
 
