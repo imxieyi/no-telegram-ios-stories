@@ -6,7 +6,11 @@ trap "exit" INT
 SCRIPT_PATH=$(realpath $(dirname $0))
 BUILD_CONFIG="$SCRIPT_PATH/release_config.json"
 CODESIGNING_INFO="$SCRIPT_PATH/codesigning"
-REQUIRED_PATCH="$SCRIPT_PATH/0001-Get-rid-of-stories.patch"
+REQUIRED_PATCHES=(
+    "$SCRIPT_PATH/0001-Get-rid-of-stories.patch"
+    "$SCRIPT_PATH/0001-Add-sa_family_t.patch"
+    "$SCRIPT_PATH/0001-Fix-build-options.patch"
+)
 OPTIONAL_PATCH="$SCRIPT_PATH/0002-Change-app-name.patch"
 
 source "$SCRIPT_PATH/env.sh"
@@ -32,7 +36,10 @@ fi
 echo "Version updated: $OLD_VERSION -> $NEW_VERSION"
 
 git submodule update --init --recursive
-git apply $REQUIRED_PATCH
+for p in "${REQUIRED_PATCHES[@]}"; do
+    echo "Applying $p"
+    git apply $p
+done
 
 if [[ -f "$OPTIONAL_PATCH" ]]; then
     git apply $OPTIONAL_PATCH
@@ -78,6 +85,8 @@ python3 build-system/Make/Make.py --cacheDir=$BAZEL_CACHE build --configurationP
 echo "Uploading artifact"
 
 xcrun altool --upload-app --type ios -f $TG_IOS_ROOT/bazel-bin/Telegram/Telegram.ipa -u $APPLE_ID -p $APPLE_ID_PASSWORD
+
+rm -rf "$BAZEL_CACHE"
 
 # Save version
 echo $NEW_VERSION > "$SCRIPT_PATH/version"

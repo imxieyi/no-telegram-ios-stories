@@ -1,0 +1,24 @@
+From 437044aa11e653487b57478241cb7fe7e2e619e7 Mon Sep 17 00:00:00 2001
+From: Yi Xie <imxieyi@users.noreply.github.com>
+Date: Wed, 25 Sep 2024 23:51:20 +0900
+Subject: [PATCH] Add sa_family_t
+
+---
+ submodules/MtProtoKit/Sources/PingFoundation.h | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/submodules/MtProtoKit/Sources/PingFoundation.h b/submodules/MtProtoKit/Sources/PingFoundation.h
+index ffb54db275..06376eec31 100644
+--- a/submodules/MtProtoKit/Sources/PingFoundation.h
++++ b/submodules/MtProtoKit/Sources/PingFoundation.h
+@@ -1,5 +1,7 @@
+ #import <Foundation/Foundation.h>
+ 
++typedef __uint8_t               sa_family_t;
++
+ #if TARGET_OS_EMBEDDED || TARGET_IPHONE_SIMULATOR
+ #import <CFNetwork/CFNetwork.h>
+ #else
+-- 
+2.39.5 (Apple Git-154)
+

@@ -1,21 +1,24 @@
-From 4ed99f311ae8aed8b588be891f5647cb65b2921c Mon Sep 17 00:00:00 2001
+From c36816411558e8f72147312ffb2535021e4eda50 Mon Sep 17 00:00:00 2001
 From: Yi Xie <imxieyi@users.noreply.github.com>
 Date: Mon, 26 Feb 2024 14:31:09 +0900
 Subject: [PATCH] Get rid of stories
 
 ---
- .../ChatListUI/Sources/ChatListController.swift      | 12 +-----------
- .../ChatListUI/Sources/ChatListControllerNode.swift  |  8 --------
- 2 files changed, 1 insertion(+), 19 deletions(-)
+ .../ChatListUI/Sources/ChatListController.swift   | 15 +--------------
+ .../Sources/ChatListControllerNode.swift          |  8 --------
+ 2 files changed, 1 insertion(+), 22 deletions(-)
 
 diff --git a/submodules/ChatListUI/Sources/ChatListController.swift b/submodules/ChatListUI/Sources/ChatListController.swift
-index 3938229ae4..44be6435b1 100644
+index fe88c71cd7..03798266bc 100644
 --- a/submodules/ChatListUI/Sources/ChatListController.swift
 +++ b/submodules/ChatListUI/Sources/ChatListController.swift
-@@ -5863,14 +5863,7 @@ public class ChatListControllerImpl: TelegramBaseController, ChatListController
+@@ -6339,17 +6339,7 @@ public class ChatListControllerImpl: TelegramBaseController, ChatListController
      }
      
      var isStoryPostingAvailable: Bool {
+-        guard !self.context.isFrozen else {
+-            return false
+-        }
 -        switch self.storyPostingAvailability {
 -        case .enabled:
 -            return true
@@ -28,7 +31,7 @@ index 3938229ae4..44be6435b1 100644
      }
  }
  
-@@ -5972,9 +5965,6 @@ private final class ChatListLocationContext {
+@@ -6451,9 +6441,6 @@ private final class ChatListLocationContext {
          if let rightButton = self.rightButton {
              result.append(rightButton)
          }
@@ -39,10 +42,10 @@ index 3938229ae4..44be6435b1 100644
              result.append(proxyButton)
          }
 diff --git a/submodules/ChatListUI/Sources/ChatListControllerNode.swift b/submodules/ChatListUI/Sources/ChatListControllerNode.swift
-index 254d87e596..f44755afed 100644
+index 4d8534e741..8f879e83a0 100644
 --- a/submodules/ChatListUI/Sources/ChatListControllerNode.swift
 +++ b/submodules/ChatListUI/Sources/ChatListControllerNode.swift
-@@ -2010,13 +2010,5 @@ final class ChatListControllerNode: ASDisplayNode, ASGestureRecognizerDelegate {
+@@ -2048,13 +2048,5 @@ final class ChatListControllerNode: ASDisplayNode, ASGestureRecognizerDelegate {
  }
  
  func shouldDisplayStoriesInChatListHeader(storySubscriptions: EngineStorySubscriptions, isHidden: Bool) -> Bool {
@@ -57,5 +60,5 @@ index 254d87e596..f44755afed 100644
      return false
  }
 -- 
-2.39.3 (Apple Git-146)
+2.39.5 (Apple Git-154)
 
