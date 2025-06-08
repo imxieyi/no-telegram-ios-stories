@@ -9,7 +9,6 @@ CODESIGNING_INFO="$SCRIPT_PATH/codesigning"
 REQUIRED_PATCHES=(
     "$SCRIPT_PATH/0001-Get-rid-of-stories.patch"
     "$SCRIPT_PATH/0001-Add-sa_family_t.patch"
-    "$SCRIPT_PATH/0001-Fix-build-options.patch"
 )
 OPTIONAL_PATCH="$SCRIPT_PATH/0002-Change-app-name.patch"
 
@@ -80,7 +79,7 @@ echo $BUILD_NUM > "$SCRIPT_PATH/build_num"
 
 echo "Build number:" $BUILD_NUM
 
-python3 build-system/Make/Make.py --cacheDir=$BAZEL_CACHE build --configurationPath=$BUILD_CONFIG --codesigningInformationPath=$CODESIGNING_INFO --buildNumber=$BUILD_NUM --configuration=release_arm64
+python3 build-system/Make/Make.py --cacheDir=$BAZEL_CACHE build --configurationPath=$BUILD_CONFIG --codesigningInformationPath=$CODESIGNING_INFO --buildNumber=$BUILD_NUM --configuration=release_arm64 || rm -rf "$BAZEL_CACHE"
 
 echo "Uploading artifact"
 
