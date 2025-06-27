@@ -12,7 +12,9 @@ REQUIRED_PATCHES=(
 )
 OPTIONAL_PATCH="$SCRIPT_PATH/0002-Change-app-name.patch"
 
-source "$SCRIPT_PATH/env.sh"
+if [[ -f "$SCRIPT_PATH/env.sh" ]]; then
+    source "$SCRIPT_PATH/env.sh"
+fi
 
 export PATH="/opt/homebrew/bin:$PATH"
 
