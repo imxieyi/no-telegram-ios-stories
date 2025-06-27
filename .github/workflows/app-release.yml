@@ -26,11 +26,12 @@ jobs:
         run: |
           git clone "https://github:$GITLAB_SECRET@git.imxieyi.com/xieyi/wakutg-build.git"
           cp -r wakutg-build/* .
+          ls -lah
 
       - name: Clone Telegram-iOS
         run: |
-          git clone https://github.com/TelegramMessenger/Telegram-iOS.git
-          git submodule update --recursive --init
+          git clone --depth 1 https://github.com/TelegramMessenger/Telegram-iOS.git
+          cd Telegram-iOS
           
       - name: Build and upload
         env:
