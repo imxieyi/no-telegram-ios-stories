@@ -43,6 +43,7 @@ for p in "${REQUIRED_PATCHES[@]}"; do
 done
 
 if [[ -f "$OPTIONAL_PATCH" ]]; then
+    echo "Applying $OPTIONAL_PATCH"
     git apply $OPTIONAL_PATCH
 fi
 
