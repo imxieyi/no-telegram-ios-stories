@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build_ios:
@@ -64,3 +65,4 @@ jobs:
           export TG_IOS_ROOT="$(pwd)/Telegram-iOS"
           export BAZEL_CACHE="$(pwd)/bazel-cache"
           ./build.sh
+
