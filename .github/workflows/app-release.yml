@@ -20,6 +20,9 @@ jobs:
         uses: maxim-lobanov/setup-xcode@v1.6.0
         with:
           xcode-version: 16.2
+          
+      - name: Download iOS Platform
+        run: xcodebuild -downloadPlatform iOS
 
       - name: Install the Apple certificate
         env:
@@ -56,9 +59,6 @@ jobs:
         run: |
           git clone --depth 1 https://github.com/TelegramMessenger/Telegram-iOS.git
           cd Telegram-iOS
-          
-      - name: Download iOS Platform
-        run: xcodebuild -downloadPlatform iOS -buildVersion 18.2
           
       - name: Build and upload
         env:
