@@ -57,6 +57,9 @@ jobs:
           git clone --depth 1 https://github.com/TelegramMessenger/Telegram-iOS.git
           cd Telegram-iOS
           
+      - name: Download iOS Platform
+        run: xcodebuild -downloadPlatform iOS -buildVersion 18.2
+          
       - name: Build and upload
         env:
           APPLE_ID: ${{ secrets.APPLE_ID }}
